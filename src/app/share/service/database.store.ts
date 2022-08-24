@@ -9,10 +9,30 @@ export interface IDataBaseState {
 export const createInitialState = (): IDataBaseState => {
   return {
     products: [
-      {id: 0, name: 'Potato', energy: 25, category: 'Vegetable'},
-      {id: 1, name: 'Raspberry', energy: 35, category: 'Fruit'},
-      {id: 2, name: 'Carrot', energy: 15, category: 'Vegetable'},
-      {id: 3, name: 'banana', energy: 40, category: 'Fruit'},
+      {
+        id:0,
+        name: 'Огурец',
+        energy: 35,
+        category: 'Овощи',
+      },
+      {
+        id: 1,
+        name: 'Курица',
+        energy: 134,
+        category: 'Мясо и Птица',
+      },
+      {
+        id: 2,
+        name: 'Картофель',
+        energy: 80,
+        category: 'Овощи',
+      },
+      {
+        id: 3,
+        name: 'Говядина',
+        energy: 178,
+        category: 'Мясо и Птица',
+      },
     ]
   };
 };
