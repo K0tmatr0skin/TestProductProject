@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
-import {HttpService} from "../../share/service/http.service";
+import {HttpService} from "../../../share/service/http.service";
 import {catchError, EMPTY, map, mapTo, Observable, of, switchMap, tap, throwError, withLatestFrom} from "rxjs";
-import {IProductDto} from "../../share/dto/product.dto";
+import {IProductDto} from "../../../share/dto/product.dto";
 import {ProductCreateQuery, ProductCreateStore} from "./product-create.store";
 import {Location} from "@angular/common";
 
@@ -15,12 +15,11 @@ export class ProductCreateService {
   ) {
   }
 
-  updateStore(info: Partial<IProductDto>): void {
+  updateStore(data: Partial<IProductDto>): void {
     this._store.update(state => {
       return {
         ...state, newProduct: {
-          ...state.newProduct,
-          ...info
+          ...state.newProduct, ...data
         }
       };
     });
@@ -32,7 +31,10 @@ export class ProductCreateService {
         this._store.setLoading(true);
       }),
       withLatestFrom(this._query.select(st => st.newProduct)),
-      switchMap(([, newProduct]) => this._http.addProduct(newProduct)),
+      switchMap(([, newProduct]) => {
+        console.log(newProduct);
+        return this._http.addProduct(newProduct)
+      }),
       tap((resp) => {
         if (resp.error != null) {
           throwError(resp.error.message);

@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from "@angular/core";
 import {Observable, Subject, takeUntil, tap} from "rxjs";
-import {IProductDto} from "../../share/dto/product.dto";
+import {IProductDto} from "../../../share/dto/product.dto";
 import {ProductCreateQuery, ProductCreateStore} from "../store/product-create.store";
 import {ProductCreateService} from "../store/product-create.service";
 import {FormControl, FormGroup} from "@angular/forms";
@@ -18,11 +18,9 @@ export class ProductCreateComponent implements OnInit, OnDestroy {
 
   public loading$: Observable<boolean> = this._query.selectLoading().pipe(takeUntil(this._destroy$));
 
-  public product$: Observable<IProductDto> = this._query.select(st => st.newProduct).pipe( takeUntil(this._destroy$));
+  public product$: Observable<IProductDto> = this._query.select(st => st.newProduct).pipe(takeUntil(this._destroy$));
 
-  public categories$: Observable<(string | null)[]> = this._productListQuery.select(st=> st.categories).pipe(
-    tap((arr) => console.log(arr)),
-    takeUntil(this._destroy$));
+  public categories$: Observable<(string | null)[]> = this._productListQuery.select(st => st.categories).pipe(takeUntil(this._destroy$));
 
   constructor(
     private _query: ProductCreateQuery,
@@ -38,25 +36,25 @@ export class ProductCreateComponent implements OnInit, OnDestroy {
   })
 
   ngOnInit(): void {
-    this._query.select(st => st.newProduct).pipe(
-      tap(data => this.createForm.patchValue(data, { emitEvent: false })),
-      takeUntil(this._destroy$)
-    ).subscribe();
+    // this._query.select(st => st.newProduct).pipe(
+    //   tap(data => this.createForm.patchValue(data, { emitEvent: false })),
+    //   takeUntil(this._destroy$)
+    // ).subscribe();
 
     this.createForm.controls['name'].valueChanges.pipe(
-      tap(name => this._service.updateStore({ ...name })),
+      tap(name => {
+        this._service.updateStore({name})
+      }),
       takeUntil(this._destroy$)
     ).subscribe();
 
     this.createForm.controls['energy'].valueChanges.pipe(
-      tap(energy => this._service.updateStore({ ...energy })),
+      tap(energy => this._service.updateStore({energy})),
       takeUntil(this._destroy$)
     ).subscribe();
 
     this.createForm.controls['category'].valueChanges.pipe(
-      tap(category => {
-        this._service.updateStore({ ...category })
-      }),
+      tap(category => this._service.updateStore({category})),
       takeUntil(this._destroy$)
     ).subscribe();
   }

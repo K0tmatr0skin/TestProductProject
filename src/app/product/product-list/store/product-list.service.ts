@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {ProductListQuery, ProductListStore} from "./product-list.store";
-import {HttpService} from "../../share/service/http.service";
+import {HttpService} from "../../../share/service/http.service";
 import {catchError, EMPTY, map, mapTo, Observable, of, switchMap, tap, throwError} from "rxjs";
-import {IProductDto} from "../../share/dto/product.dto";
+import {IProductDto} from "../../../share/dto/product.dto";
 
 @Injectable({providedIn: 'root'})
 export class ProductListService {

@@ -1,5 +1,5 @@
 import {EntityState, EntityStore, QueryEntity, StoreConfig} from "@datorama/akita";
-import {IProductDto} from "../../share/dto/product.dto";
+import {IProductDto} from "../../../share/dto/product.dto";
 import {Injectable} from "@angular/core";
 
 export interface IProductListState extends EntityState<IProductDto, number> {

@@ -1,4 +1,4 @@
-import {IProductDto} from "../../share/dto/product.dto";
+import {IProductDto} from "../../../share/dto/product.dto";
 import {Injectable} from "@angular/core";
 import {guid, Query, Store} from "@datorama/akita";
 

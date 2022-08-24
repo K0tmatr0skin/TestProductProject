@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ProductListQuery, ProductListStore} from "../store/product-list.store";
 import {ProductListService} from "../store/product-list.service";
 import {from, Observable, Subject, takeUntil, tap} from "rxjs";
-import {IProductDto} from "../../share/dto/product.dto";
+import {IProductDto} from "../../../share/dto/product.dto";
 import {Router} from "@angular/router";
 
 @Component({
