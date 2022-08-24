@@ -1,0 +1,26 @@
+<div [formGroup]="createForm">
+  <h4>New product:</h4>
+  <div>
+    <label>Name:</label>
+    <input type="text" formControlName="name">
+  </div>
+  <div>
+    <label>Name:</label>
+    <input type="text" formControlName="energy">
+  </div>
+  <div>
+    <label>Category:</label>
+    <select formControlName="category">
+      <div *ngFor="let item of (categories$ | async)">
+        <option value="dog">Dog</option>
+      </div>
+      <option value="dog">Dog</option>
+      <option value="cat">Cat</option>
+      <option value="hamster">Hamster</option>
+      <option value="parrot">Parrot</option>
+      <option value="spider">Spider</option>
+      <option value="goldfish">Goldfish</option>
+    </select>
+  </div>
+
+</div>
