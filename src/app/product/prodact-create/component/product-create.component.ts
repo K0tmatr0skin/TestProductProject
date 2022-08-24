@@ -1,10 +1,9 @@
-import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import {Observable, Subject, takeUntil, tap} from "rxjs";
 import {IProductDto} from "../../../share/dto/product.dto";
 import {ProductCreateQuery, ProductCreateStore} from "../store/product-create.store";
 import {ProductCreateService} from "../store/product-create.service";
 import {FormControl, FormGroup} from "@angular/forms";
-import {ProductListService} from "../../product-list/store/product-list.service";
 import {Location} from "@angular/common";
 import {ProductListQuery} from "../../product-list/store/product-list.store";
 
@@ -36,11 +35,6 @@ export class ProductCreateComponent implements OnInit, OnDestroy {
   })
 
   ngOnInit(): void {
-    // this._query.select(st => st.newProduct).pipe(
-    //   tap(data => this.createForm.patchValue(data, { emitEvent: false })),
-    //   takeUntil(this._destroy$)
-    // ).subscribe();
-
     this.createForm.controls['name'].valueChanges.pipe(
       tap(name => {
         this._service.updateStore({name})
